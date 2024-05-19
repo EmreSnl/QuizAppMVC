@@ -1,0 +1,43 @@
+﻿@model List<QuestionListViewModel>
+
+<div>
+    <div class="float-start">
+        <h2>Sorular</h2>
+    </div>
+    <div class="float-end">
+        <a asp-area="Admin" asp-controller="Question" asp-action="New" class="btn btn-primary">Yeni Soru</a>
+    </div>
+</div>
+
+<div style="padding-top:75px">
+    <table id="questionTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Soru Metni</th>
+                <th>Seçenek 1</th>
+                <th>Seçenek 2</th>
+                <th>Seçenek 3</th>
+                <th>Seçenek 4</th>
+                <th>Doğru Cevap</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.QuestionText</td>
+                    <td>@item.Option1Text</td>
+                    <td>@item.Option2Text</td>
+                    <td>@item.Option3Text</td>
+                    <td>@item.Option4Text</td>
+                    <td>@item.CorrectAnswer</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@item.Id">DÜZENLE</a>
+                        <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.Id">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

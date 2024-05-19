@@ -1,0 +1,55 @@
+﻿@model QuizFormViewModel
+
+<div class="row">
+
+    <div class="col-8 offset-2">
+
+
+        <div class="card" style="border:solid 2px">
+
+            <div class="card-header fw-bold fs-5">
+               @(Model.Id == 0 ? "Quiz Adding Form" : "Quiz Update Form")
+            </div>
+
+            <div class="card-body">
+
+                <form method="post" asp-area="Admin" asp-controller="Quiz"asp-action="Save">
+
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
+
+                    <input asp-for="Id" type="hidden" />
+
+                    <div class="mb-2">
+                        <label asp-for="QuizText"></label>
+                        <input asp-for="QuizText" class="form-control" />
+                        <span class="text-danger fw-bold mt-1" asp-validation-for="QuizText"></span>
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="Description"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span class="text-danger fw-bold mt-1" asp-validation-for="Description"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3 float-end">@(Model.Id == 0 ? "Save" : "Update")</button>
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>

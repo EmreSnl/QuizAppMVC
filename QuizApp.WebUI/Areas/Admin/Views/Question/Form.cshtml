@@ -1,0 +1,91 @@
+﻿@model QuestionFormViewModel
+
+
+<div class="row">
+
+    <div class="col-8 offset-2">
+
+        <div class="card" style="border:solid 2px">
+
+            <div class="card-header fw-bold fs-5">
+                Ürün Formu
+            </div>
+
+            <div class="card-body">
+
+
+                <form method="post" asp-area="Admin" asp-controller="Question" asp-action="Save" enctype="multipart/form-data" >
+                    @*   DOSYA TAŞIYORSAN , ENCTYPE EKLEMELISIN ! - File kısmını formdan ayrı bir part olarak görmesini istiyorsun. *@
+
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
+
+                    <input asp-for="Id" />
+                    @* id kontrol için, sonradan gizlenecek*@
+
+                    <div class="mb-2">
+                        <label asp-for="QuestionText"></label>
+                        <input asp-for="QuestionText" type="text" class="form-control" />
+                        <span class="text-danger fw-bold mt-1"></span>
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="Option1Text"></label>
+                        <input asp-for="Option1Text" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="Option2Text"></label>
+                        <input asp-for="Option2Text" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="Option3Text"></label>
+                        <input asp-for="Option3Text" type="text" class="form-control" />
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Option4Text"></label>
+                        <input asp-for="Option4Text" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="CorrectAnswer"></label>
+                        <input asp-for="CorrectAnswer" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label asp-for="QuizId"></label>
+                        <select asp-for="QuizId" asp-items="@(new SelectList(ViewBag.Quizes, "Id" , "QuizText"))" class="form-control">
+                            <option selected disabled>Choose</option>
+                        </select>
+                    </div>
+
+                   
+
+
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.FileError))
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.FileError
+                        </div>
+                    }
+
+                    <button type="submit" class="btn btn-success mt-3 float-end">Send</button>
+
+
+                </form>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>

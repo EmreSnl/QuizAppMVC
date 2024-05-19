@@ -1,0 +1,61 @@
+﻿@using System.Security.Claims
+@model List<QuizApp.WebUI.Models.QuestionListViewModel>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card" style="border:solid 2px">
+                <div class="card-header fw-bold fs-5">
+                    @Model.FirstOrDefault()?.QuizText ?? "Sorular"
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-controller="StudentAnswer" asp-action="SubmitAnswers">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="userId" name="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+
+                        <table id="questionTable" class="table table-striped">
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td colspan="2">@item.QuestionText</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input type="hidden" name="questionIds" value="@item.Id" />
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="answers[@item.Id]" id="option1_@item.Id" value="@item.Option1Text">
+                                                <label class="form-check-label" for="option1_@item.Id">
+                                                    @item.Option1Text
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="answers[@item.Id]" id="option2_@item.Id" value="@item.Option2Text">
+                                                <label class="form-check-label" for="option2_@item.Id">
+                                                    @item.Option2Text
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="answers[@item.Id]" id="option3_@item.Id" value="@item.Option3Text">
+                                                <label class="form-check-label" for="option3_@item.Id">
+                                                    @item.Option3Text
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="answers[@item.Id]" id="option4_@item.Id" value="@item.Option4Text">
+                                                <label class="form-check-label" for="option4_@item.Id">
+                                                    @item.Option4Text
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary">Cevapları Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
