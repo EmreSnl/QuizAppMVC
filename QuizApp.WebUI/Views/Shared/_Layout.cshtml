@@ -34,7 +34,6 @@
 
                 <div class="d-none" id="Login">
                     <partial name="_LoginPartial" model="new LoginViewModel()" />
-                    @*Eğer bir partialView model alıyorsa, boş bir model ile açmak hata almanı engelleyecektir.*@
                 </div>
 
 
@@ -61,7 +60,7 @@
                     {
                         <div class="ms-3">
 
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-danger">Admin Management Page</a>
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="ShowResults" class="btn btn-danger">Quiz Results Admin Page</a>
 
                         </div>
 
@@ -89,9 +88,9 @@
     </div>
 
     <footer class="bg-dark text-white text-center fw-bold py-5 mt-auto">
-        YZL 8437 | BilgeShop
+        .NET MVC | QuizWebApp
         <hr />
-        <p class="text-secondary">© Tüm hakları saklıdır.</p>
+        <p class="text-secondary">© All rights reserved.</p>
     </footer>
 
 

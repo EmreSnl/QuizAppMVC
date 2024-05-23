@@ -15,7 +15,7 @@
 
 
                 <form method="post" asp-area="Admin" asp-controller="Question" asp-action="Save" enctype="multipart/form-data" >
-                    @*   DOSYA TAŞIYORSAN , ENCTYPE EKLEMELISIN ! - File kısmını formdan ayrı bir part olarak görmesini istiyorsun. *@
+
 
                     @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
                     {
@@ -24,9 +24,7 @@
                         </div>
                     }
 
-                    <input asp-for="Id" />
-                    @* id kontrol için, sonradan gizlenecek*@
-
+  
                     <div class="mb-2">
                         <label asp-for="QuestionText"></label>
                         <input asp-for="QuestionText" type="text" class="form-control" />

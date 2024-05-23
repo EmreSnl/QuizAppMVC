@@ -9,9 +9,11 @@
                     @Model.FirstOrDefault()?.QuizText ?? "Sorular"
                 </div>
                 <div class="card-body">
-                    <form method="post" asp-controller="StudentAnswer" asp-action="SubmitAnswers">
+                    <form id="quizForm" method="post" asp-controller="StudentAnswer" asp-action="SubmitAnswers">
                         @Html.AntiForgeryToken()
                         <input type="hidden" id="userId" name="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                        <input type="hidden" id="quizId" name="quizId" value="@Model.FirstOrDefault()?.QuizId">
+
 
                         <table id="questionTable" class="table table-striped">
                             <tbody>
@@ -52,10 +54,18 @@
                                 }
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-primary">Cevapları Gönder</button>
+                        <button type="submit" class="btn btn-primary">Submit The Answers</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        alert('Your answers are submitted');
+        this.submit(); 
+    });
+</script>

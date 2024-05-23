@@ -12,12 +12,13 @@
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a asp-area="Admin" asp-controller="" asp-action="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="ShowResults" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 
-                <span class="fs-4">Quiz App Management</span>
+                <span class="fs-4">Quiz Results Page</span>
             </a>
             
             <ul class="mt-2 nav-pills">
+                <li class="btn btn-warning nav-item "><a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Main Page</a></li>
                 <li class="btn btn-warning nav-item "><a asp-area="Admin" asp-controller="Quiz" asp-action="List" class="nav-link">Quizzes</a></li>
                 <li class="ms-2 btn btn-warning nav-item"><a asp-area="Admin" asp-controller="Question" asp-action="List"  class="nav-link">Questions</a></li>
             </ul>

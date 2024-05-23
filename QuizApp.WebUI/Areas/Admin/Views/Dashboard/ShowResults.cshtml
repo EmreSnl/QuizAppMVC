@@ -1,0 +1,45 @@
+﻿@model List<StudentResultListViewModel>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Results</title>
+    <style>
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px; 
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+    </style>
+</head>
+
+
+<h1>Results</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quiz</th>
+            <th>Rights</th>
+            <th>Wrongs</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td>@result.UserInfo.FirstName @result.UserInfo.LastName</td>
+                <td>@result.QuizName</td>
+                <td>@result.StudentResult.RightAnswers</td>
+                <td>@result.StudentResult.WrongAnswers</td>
+                <td>@result.StudentResult.Grade</td>
+            </tr>
+        }
+    </tbody>
+</table>

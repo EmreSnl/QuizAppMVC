@@ -8,8 +8,17 @@
 
 
 
-            @await Component.InvokeAsync("Quizes")
-            @* <vc:quizes></vc:quizes>*@
+            @if (User.Identity.IsAuthenticated)
+            {
+                @await Component.InvokeAsync("Quizes")
+                @* <vc:quizes></vc:quizes>*@
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    Please login if you already have an account or <a href="@Url.Action("Register", "Auth")">register</a> to start solving quizzes.
+                </div>
+            }
 
         </div>
 

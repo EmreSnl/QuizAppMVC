@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace QuizApp.WebUI.Extensions
 {
-    // cookie'de tutulan verilerin kontrollerini yapmak için yazılacak metotları bu class içerisinde topluyorum.
+
 
 
     public static class ClaimsPrincipalExtensions

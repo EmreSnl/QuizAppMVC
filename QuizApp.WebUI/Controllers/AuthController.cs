@@ -109,7 +109,7 @@ namespace QuizApp.WebUI.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(); // oturumu kapat.
+            await HttpContext.SignOutAsync(); 
 
             return RedirectToAction("Index", "Home");
         }

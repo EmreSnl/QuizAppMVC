@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizApp.Business.Dtos;
 using QuizApp.Business.Services;
-using QuizApp.WebUI.Extensions;
-using QuizApp.WebUI.Models;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -12,18 +10,18 @@ namespace QuizApp.WebUI.Controllers
     {
         private readonly IStudentAnswerService _studentAnswerService;
         private readonly IQuestionService _questionService;
+        private readonly IStudentResultService _studentResultService;
 
-        public StudentAnswerController(IStudentAnswerService studentAnswerService, IQuestionService questionService)
+        public StudentAnswerController(IStudentAnswerService studentAnswerService, IQuestionService questionService, IStudentResultService studentResultService)
         {
             _studentAnswerService = studentAnswerService;
             _questionService = questionService;
+            _studentResultService = studentResultService;
         }
-
         [HttpPost]
-        public IActionResult SubmitAnswers(List<int> questionIds, Dictionary<int, string> answers)
+        public IActionResult SubmitAnswers(int quizId, List<int> questionIds, Dictionary<int, string> answers)
         {
             var userId = int.Parse(User.FindFirstValue("id"));
-
 
             if (questionIds == null || answers == null)
             {
@@ -34,6 +32,9 @@ namespace QuizApp.WebUI.Controllers
             {
                 return BadRequest("Question IDs and answers count mismatch.");
             }
+
+            int correctAnswersCount = 0;
+            int totalQuestions = questionIds.Count;
 
             foreach (var questionId in questionIds)
             {
@@ -51,6 +52,10 @@ namespace QuizApp.WebUI.Controllers
                 }
 
                 var isCorrect = selectedOption == question.CorrectAnswer;
+                if (isCorrect)
+                {
+                    correctAnswersCount++;
+                }
 
                 var studentAnswer = new AddStudentAnswerDto()
                 {
@@ -63,7 +68,21 @@ namespace QuizApp.WebUI.Controllers
                 _studentAnswerService.AddStudentAnswer(studentAnswer);
             }
 
-            return RedirectToAction("List");
+            int wrongAnswersCount = totalQuestions - correctAnswersCount;
+            int grade = (int)((double)correctAnswersCount / totalQuestions * 100);
+
+            var studentResult = new AddStudentResultDto()
+            {
+                UserId = userId,
+                QuizId = quizId,
+                Grade = grade,
+                RightAnswers = correctAnswersCount,
+                WrongAnswers = wrongAnswersCount
+            };
+
+            _studentResultService.AddStudentResult(studentResult);
+
+            return RedirectToAction("QuizCompleted");
         }
 
         public IActionResult QuizCompleted()

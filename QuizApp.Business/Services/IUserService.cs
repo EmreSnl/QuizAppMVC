@@ -13,5 +13,7 @@ namespace QuizApp.Business.Services
         ServiceMessage AddUser(AddUserDto addUserDto);
 
         UserInfoDto LoginUser(LoginUserDto loginUserDto);
+        UserInfoDto GetUserInfoById(int userId);
+
     }
 }

@@ -84,7 +84,7 @@ namespace QuizApp.WebUI.Areas.Admin.Controllers
                 return View("Form", formData);
             }
 
-            if (formData.Id == 0) // ekleme
+            if (formData.Id == 0) 
             {
                 var addQuestionDto = new AddQuestionDto()
                 {

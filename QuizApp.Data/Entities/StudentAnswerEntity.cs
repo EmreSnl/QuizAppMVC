@@ -17,7 +17,7 @@ namespace QuizApp.Data.Entities
 
         public bool IsCorrect { get; set; }
 
-        public QuestionEntity Question { get; set; }  // Navigasyon özelliği
+        public QuestionEntity Question { get; set; }  
 
 
     }

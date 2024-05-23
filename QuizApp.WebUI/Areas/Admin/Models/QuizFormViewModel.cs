@@ -5,7 +5,7 @@ namespace QuizApp.WebUI.Areas.Admin.Models
     public class QuizFormViewModel
     {
 
-        public int Id { get; set; } // Bu model ile aynı formdan hem ekleme hem güncelleme yapılacağı için, Id bilgisi de taşınmalı.
+        public int Id { get; set; } 
         [Display(Name = "Quiz")]
         [Required(ErrorMessage = "You must fill the quiz name.")]
         public string QuizText { get; set; }
@@ -13,6 +13,5 @@ namespace QuizApp.WebUI.Areas.Admin.Models
         [Display(Name = "Description")]
         [MaxLength(1000)]
         public string? Description { get; set; }
-        // ? -> nullable - boş gönderilebilir.
     }
 }

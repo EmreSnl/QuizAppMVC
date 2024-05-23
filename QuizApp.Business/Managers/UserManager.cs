@@ -87,5 +87,28 @@ namespace BilgeShop.Business.Managers
 
 
         }
+
+        public UserInfoDto GetUserInfoById(int userId)
+        {
+            var userEntity = _userRepository.GetById(userId);
+
+            if (userEntity is null)
+            {
+                return null;
+            }
+
+            return new UserInfoDto()
+            {
+                Id = userEntity.Id,
+                FirstName = userEntity.FirstName,
+                LastName = userEntity.LastName,
+                UserType = userEntity.UserType,
+                Email = userEntity.Email
+            };
+        }
+
+
+
+
     }
 }

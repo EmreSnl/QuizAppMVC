@@ -73,6 +73,7 @@ namespace QuizApp.Business.Managers
                 QuizId = x.QuizId,
                 RightAnswers = x.RightAnswers,
                 WrongAnswers = x.WrongAnswers,
+                Grade=x.Grade,  
                 UserId = x.UserId
             }).ToList();
 
@@ -95,6 +96,7 @@ namespace QuizApp.Business.Managers
                 QuizId = entity.QuizId,
                 RightAnswers = entity.RightAnswers,
                 WrongAnswers = entity.WrongAnswers,
+                Grade=entity.Grade,
                 UserId = entity.UserId
 
             };
